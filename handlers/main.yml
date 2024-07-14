@@ -8,9 +8,6 @@
 
 - name: Restart mailman3-core service
   ansible.builtin.command: systemctl try-restart {{ mailman3_core_service_name }}.service
-  args:
-    # can't noqa a multi-line yaml string and noqa command-instead-of-module makes the line fail the line length rule
-    warn: false
   when:
     - mailman3_process_manager == "systemd"
     - ansible_virtualization_type != "docker"
